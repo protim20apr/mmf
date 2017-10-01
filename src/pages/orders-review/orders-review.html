@@ -1,0 +1,60 @@
+
+<ion-header>
+
+  <ion-navbar color = "dark">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Review your orders</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  
+  <ion-list>
+    <ion-item *ngFor = "let order of orders">
+      <ion-avatar item-left>
+        <img src = "{{order.url}}" alt="Order.jpg" >
+      </ion-avatar>
+      <ion-row>
+        <ion-col>
+          <h5>{{order.product_name}}</h5>
+        </ion-col>
+        <ion-col>
+          <h5> </h5>
+        </ion-col>
+        <ion-col>
+          <h5>₹ {{order.price}}</h5>
+        </ion-col>
+      </ion-row>
+      
+    </ion-item>
+  </ion-list>
+  <ion-row>
+      <ion-col>
+      </ion-col>
+      <ion-col>
+        <h5>Total</h5>
+      </ion-col>
+      <ion-col>
+        <h5>=</h5>
+      </ion-col>
+      <ion-col>
+          <h5>₹ {{total}}</h5>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col col-6>
+          <button ion-button color = "light" icon-left block (tap) = "cancel()">
+            <ion-icon name="arrow-backward"></ion-icon>
+            Cancel</button>
+        </ion-col>
+    
+        <ion-col col-6 >
+          <button ion-button color = "dark" icon-left block (tap) = "placeOrder()">
+            <ion-icon name="arrow-forward"></ion-icon>
+            Place Order</button>
+        </ion-col>
+      </ion-row>  
+</ion-content>

@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar color = "dark">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Miss My Food</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-right (tap) = "search()">
+      <ion-icon name="search"></ion-icon>
+      </button>
+      <button ion-button icon-right (tap) = "cart()">
+        <ion-icon name="cart"></ion-icon>&nbsp;
+        ({{cartLength}})
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content no-margin overflow-scroll="false">
+    <div no-padding>
+      <!--img src = "http://www.dwarkaexpress.com/wp-content/uploads/2012/12/rado-watch.jpg" width="100%" height="200px" -->
+      <img src = "https://scontent.fdel1-1.fna.fbcdn.net/v/t1.0-9/10403633_481357422016749_7093600059929499225_n.jpg?oh=b7a44a8da9df2781189f37d8eab678cd&oe=5A3E4E03"  width="100%" height="200px">
+    </div>
+  <ion-card>
+    <ion-card-header>
+      <h2>I miss my ... </h2>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-row tappable>
+        <ion-col (tap) = "breakfast()">
+          <!--img src = "http://drop.ndtv.com/TECH/product_database/images/11162016120819AM_635_op3t.jpeg" width="auto" height="90%" -->
+          <img src = "https://i.pinimg.com/736x/19/86/1e/19861e8b6d94dc8d7c96eba98ee32a48--breakfast-eggs-breakfast-ideas-with-eggs.jpg"  width="auto" height="90%">
+          <h3 text-center>Breakfast</h3>
+        </ion-col>  
+        <ion-col (tap) = "dinner()">
+          <!-- img src = "http://www.bhatnaturally.com/wp-content/uploads/2012/05/Chanel.png"  width="auto" height="90%" -->
+          <img src ="http://images.mid-day.com/images/2017/apr/3-Jika-Maas.jpg"  width="auto" height="90%">
+          <h3 text-center>Dinner</h3>
+        </ion-col>  
+      </ion-row>    
+      <ion-row>
+        <ion-col (tap) = "cheffSpecial()">
+          <!-- img src = "https://assets.abfrlcdn.com/img/app/product/1/170531-419630-large.jpg" width="auto" height="90%" -->
+          <img src = "https://2.bp.blogspot.com/-doto0-w1cOU/WM_PMv86GbI/AAAAAAAAEmA/aT_jVi7mprIuLQ3rkf0MyE-s6wxUqPXwQCLcB/s1600/Pork%2BKhorika.JPG"  width="auto" height="90%">
+          <h3 text-center>Chef's Special</h3>
+        </ion-col>  
+      </ion-row>
+
+    </ion-card-content>
+  </ion-card>
+
+  <div>
+    <img src = "http://cdn2.highfashionmagazine.com/sites/highfashionmagazine.com/files/imagecache/story_main_pic/emma-watson-lancome-122112-666.jpg"> 
+  </div>
+
+  
+
+</ion-content>

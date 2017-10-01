@@ -1,0 +1,33 @@
+
+  <ion-content padding class="manual-ios-statusbar-padding" no-scroll>
+    <form id="login-form1" class="list">
+      <img src = "https://scontent.fdel1-1.fna.fbcdn.net/v/t1.0-9/10403302_481035542048937_9064453479279190891_n.png?oh=d3eb2d2ddf621df8ce0cc2e261a7a817&oe=5A489FE8" width="auto" height="100px" style="margin-left: 120px; ">
+      
+      <ion-list id="login-list1" no-lines>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+               <ion-label floating>Email</ion-label>
+              <ion-input type="email" [(ngModel)] = "name" name="name"></ion-input>
+            </ion-item>
+        </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-item>
+             <ion-label floating>Password</ion-label>
+                 <ion-input type="password" [(ngModel)] = "password" name="password"></ion-input>
+          </ion-item>
+        </ion-row>
+      </ion-list>
+      <button id="login-button1" class="button button-calm  button-block" (tap) = "onLoginClick()">LOG IN</button>
+       <a href-inappbrowser="/signup" id="login-button2" class="button button-calm  button-block button-clear" (tap) = "onSignUpClick()">OR SIGN UP</a>
+      
+      
+    <div text-center>
+      <button class="button button-calm  button-block button-clear">Forgot Password?</button>
+    <hr>
+      <ion-icon name="logo-google"></ion-icon>
+      <ion-icon name="logo-facebook"></ion-icon>
+    </div>
+    </form>
+  </ion-content>

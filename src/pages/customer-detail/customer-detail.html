@@ -1,0 +1,100 @@
+
+<ion-header>
+
+  <ion-navbar color = "dark">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Deliver At</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content *ngIf="!isEditingMode">
+    <ion-card *ngFor="let dtl of oldDtls">
+        <ion-card-content>
+          <ion-row>
+            <ion-col col-8>
+              <ion-row>
+                <ion-col>
+                  <h3>{{dtl.name}}</h3>
+                </ion-col>
+              </ion-row>
+    
+              <ion-row>
+                <ion-col>
+                  <h3>{{dtl.mobile}}</h3>
+                </ion-col>
+              </ion-row>
+    
+              <ion-row>
+                <ion-col>
+                    <h3>{{dtl.address}}</h3>
+                </ion-col>
+              </ion-row>
+    
+            </ion-col>
+          </ion-row>
+          <ion-row>
+              <ion-col col-6>
+                <button ion-button color = "light" icon-left block (tap) = "deleteDtl(dtl)">
+                  Delete</button>
+                </ion-col>
+           </ion-row>
+        </ion-card-content>
+      </ion-card>
+      <ion-row>
+          <ion-col col-6>
+            <button ion-button color = "light" icon-left block (tap) = "cancel()">
+              <ion-icon name="arrow-backward"></ion-icon>
+              Cancel</button>
+          </ion-col>
+      
+          <ion-col col-6 >
+            <button ion-button color = "dark" icon-left block (tap) = "placeOrder()">
+              Checkout</button>
+          </ion-col>
+        </ion-row>  
+</ion-content>
+
+<ion-content padding *ngIf="isEditingMode">
+  
+  <ion-row>
+    <ion-col>
+      <ion-item>
+         <ion-label floating>Name</ion-label>
+        <ion-input type="text" [(ngModel)] = "name" name="name"></ion-input>
+      </ion-item>
+  </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <ion-item>
+         <ion-label floating>Mobile Number</ion-label>
+        <ion-input type="number" [(ngModel)] = "mobile" name="mobile"></ion-input>
+      </ion-item>
+  </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-item>
+         <ion-label floating>Address</ion-label>
+        <ion-textarea [(ngModel)] = "address" name="address"></ion-textarea>
+      </ion-item>
+  </ion-col>
+  </ion-row>
+
+     <ion-row>
+        <ion-col col-6>
+          <button ion-button color = "light" icon-left block (tap) = "cancel()">
+            <ion-icon name="arrow-backward"></ion-icon>
+            Cancel</button>
+        </ion-col>
+    
+        <ion-col col-6 >
+          <button ion-button color = "dark" icon-left block (tap) = "placeOrder()">
+            Checkout</button>
+        </ion-col>
+      </ion-row>  
+</ion-content>
