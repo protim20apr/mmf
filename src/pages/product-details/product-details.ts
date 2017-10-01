@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LocalStorage } from '../../providers/local-storage';
 import { OrdersReview } from '../orders-review/orders-review';
+import { Cart } from '../cart/cart';
 
 @IonicPage()
 @Component({
@@ -11,12 +12,14 @@ import { OrdersReview } from '../orders-review/orders-review';
 export class ProductDetails {
 
   product: any;
+  cartLength = 0;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
-              public localStorage: LocalStorage            
+              public _localStorage: LocalStorage            
   ) {
     this.product = this.navParams.get('product');
+    this.cartLength = this._localStorage.getCartLength();
   }
 
   ionViewDidLoad() {
@@ -26,15 +29,19 @@ export class ProductDetails {
   addToWishlist(product){
     console.log(product);
     console.log('Adding it to wishlist');
-    this.localStorage.storeProductToWishList(product);
+    this._localStorage.storeProductToWishList(product);
   }
 
   addToCart(product){
-    this.localStorage.addProductToCart(product);
+    this._localStorage.addProductToCart(product);
   }
 
   buyNow(product){
-    this.localStorage.addProductToCart(product);
+    this._localStorage.addProductToCart(product);
     this.navCtrl.push(OrdersReview)
+  }
+
+  cart(){
+    this.navCtrl.push(Cart);
   }
 }

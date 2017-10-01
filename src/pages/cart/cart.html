@@ -35,7 +35,7 @@
     <ion-card-content>
       <ion-row>
         <ion-col>
-          <p>{{product.product_name}}</p>
+          <h2>{{product.product_name}}</h2>
           <p>{{product.description}}</p>
         </ion-col>
         <ion-col>
@@ -45,11 +45,13 @@
 
       <ion-row>
         <ion-col>
-          <p>{{product.price | currency: symbolDisplay: true}}</p>
+            <h3>Price: ₹{{product.price}}</h3>
         </ion-col>
         <ion-col></ion-col>
         <ion-col>
-          <ion-icon name = "close" (tap) = "removeFromCart(product)"></ion-icon>
+          <!-- <ion-icon name = "close" (tap) = "removeFromCart(product)"></ion-icon> -->
+          <button ion-button color = "light" icon-left block (tap) = "removeFromCart(product)">
+              Remove</button>
         </ion-col>
       </ion-row>
       

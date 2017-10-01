@@ -1,15 +1,12 @@
 <ion-menu [content]="content">
-  
+
   <ion-content>
 
     <div class="main-class">
       <ion-row>
         <ion-col col-5>
-          <img src = "http://www.makstudios.co.uk/images/avatar4.png">
-        </ion-col>
-        <ion-col col-7>
-          <h5>Beta</h5>
-          <p>Monot Pore</p>
+          <img src="https://scontent.fdel1-1.fna.fbcdn.net/v/t1.0-9/10403302_481035542048937_9064453479279190891_n.png?oh=d3eb2d2ddf621df8ce0cc2e261a7a817&oe=5A489FE8"
+            width="auto" height="auto" style="margin-left:85px; ">
         </ion-col>
       </ion-row>
     </div>
@@ -18,8 +15,13 @@
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         {{p.title}}
       </button>
-        
+
     </ion-list>
+    <ion-row>
+      <ion-col text-center>
+        <a href="tel:+919910630243" class="button button-positive">Call us</a>
+      </ion-col>
+    </ion-row>
   </ion-content>
 </ion-menu>
 

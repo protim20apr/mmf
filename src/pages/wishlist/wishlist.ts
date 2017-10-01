@@ -10,8 +10,8 @@ import { ProductDetails } from '../product-details/product-details';
 })
 export class Wishlist {
 
-  wishListArray: any[];
-  customWishListArray: any[];
+  wishListArray: any[] = [];
+  customWishListArray: any[] = [];
 
   wishName: any;
   wishDescription: any;

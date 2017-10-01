@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ProductDetails } from '../product-details/product-details';
 import { LocalStorage } from '../../providers/local-storage';
 import { OrdersReview } from '../orders-review/orders-review';
+import { Cart } from '../cart/cart';
 
 @IonicPage()
 @Component({
@@ -12,14 +13,15 @@ import { OrdersReview } from '../orders-review/orders-review';
 export class Products {
 
   productList: any;
+  cartLength = 0;
   
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
-              public localStorage: LocalStorage) {
+              public _localStorage: LocalStorage) {
     console.log("Navparams are ", this.navParams.get('productList'));
     this.productList = this.navParams.get('productList');
-    
+    this.cartLength = this._localStorage.getCartLength();
   }
 
   ionViewDidLoad() {
@@ -33,11 +35,11 @@ export class Products {
   }
 
   addToCart(product){
-    this.localStorage.addProductToCart(product);
+    this._localStorage.addProductToCart(product);
+    this.cartLength = this._localStorage.getCartLength();
   }
 
-  buyNow(product){
-    this.localStorage.addProductToCart(product);
-    this.navCtrl.push(OrdersReview)
+  cart(){
+    this.navCtrl.push(Cart);
   }
 }
