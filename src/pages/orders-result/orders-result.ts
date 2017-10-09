@@ -14,13 +14,13 @@ export class OrdersResult {
 
   orders: any;
   total: any = 0;
-  
+  kitchen: any;
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private _localStorage: LocalStorage
   ) {
     console.log("New Order placed")
-    
+    this.kitchen = this.navParams.get("kitchen");
   }
 
 

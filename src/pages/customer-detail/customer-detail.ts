@@ -4,6 +4,7 @@ import { LocalStorage } from '../../providers/local-storage';
 import { OrdersResult } from '../orders-result/orders-result';
 import { Dashboard } from '../dashboard/dashboard';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { HttpClient } from '../../providers/http-client';
 
 
 @IonicPage()
@@ -21,12 +22,13 @@ export class CustomerDetail {
   dtlForm: FormGroup;
   name: any;
   mobile: any;
-  address:any;
-  
-  
-  constructor(public navCtrl: NavController, 
-              public navParams: NavParams,
-              private _localStorage: LocalStorage
+  address: any;
+
+
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private _localStorage: LocalStorage,
+    private httpClient: HttpClient
   ) {
     this.orders = JSON.parse(localStorage.getItem('cart'));
     this.oldDtls = this._localStorage.getCustomerDetail();
@@ -34,35 +36,47 @@ export class CustomerDetail {
     // this.orders.forEach(order => {this.total = order.price + this.total});
   }
 
- ionViewDidLoad() {
+  ionViewDidLoad() {
     console.log('ionViewDidLoad Orders');
   }
 
-  cancel(){
+  cancel() {
     this.navCtrl.push(Dashboard)
   }
-  
-  placeOrder(){
-    this._localStorage.buyProducts(this.orders);
-    localStorage.removeItem('cart');
+
+  placeOrder() {
     const custDtl = {
       name: this.name,
       mobile: this.mobile,
       address: this.address
     };
 
-    if(this.name != undefined && this.mobile != undefined && this.address != undefined){
+    let result = undefined;
+    if (this.name != undefined && this.mobile != undefined && this.address != undefined) {
       this._localStorage.addCustomerDetail(custDtl)
-    } else if((this.oldDtls !== null || this.oldDtls.length !== 0)) {
-        // send detail to server for this.oldDtls[0]
+      result = this.httpClient.buy(this.orders, custDtl);
+    } else if ((this.oldDtls !== null || this.oldDtls.length !== 0)) {
+      result = this.httpClient.buy(this.orders, this.oldDtls[0]);
     }
-
-    // this.cartProductArray = [];
-    
-    this.navCtrl.push(OrdersResult)
+    result.subscribe(
+      address => {
+        console.log("got here as well");
+        this.removeOrderAndRedirect({ "kitchen":{ "msg": "Your order has been placed. Your food will be delivered very soon." }});
+      },
+      error => {
+        console.log(error);
+        this.removeOrderAndRedirect({ "kitchen":{ "msg": "OOPS!!! The kitchen is not available right at the moment. But don't worry we will get back to you. In the meanwhile write something to us." }});
+      }
+    );
   }
 
-  deleteDtl(custDtl){
+  removeOrderAndRedirect(kitchenMsg) {
+    this._localStorage.buyProducts(this.orders);
+    localStorage.removeItem('cart');
+    this.navCtrl.push(OrdersResult, kitchenMsg);
+  }
+
+  deleteDtl(custDtl) {
     this.oldDtls = this._localStorage.removeCustomerDetail(custDtl);
     this.isEditingMode = (this.oldDtls === null || this.oldDtls.length === 0) ? true : false;
   }

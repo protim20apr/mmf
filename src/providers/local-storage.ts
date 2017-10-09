@@ -168,6 +168,20 @@ export class LocalStorage {
     return JSON.parse(localStorage.getItem('userWishes'));
   }
 
+
+  getSlackDetail() {
+    return JSON.parse(localStorage.getItem('slack'));
+  }
+
+  addSlackDetail(slackDetail) {
+    localStorage.setItem('slack', JSON.stringify(slackDetail));
+    return this.getSlackDetail();
+  }
+
+  removeSlackDetail(){
+    localStorage.setItem('slack', undefined);
+  }
+
 }
 
 

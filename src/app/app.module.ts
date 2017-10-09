@@ -24,6 +24,7 @@ import { CustomerDetailModule } from '../pages/customer-detail/customer-detail.m
 
 
 import { LocalStorage } from '../providers/local-storage';
+import { HttpClient } from '../providers/http-client';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -85,7 +86,8 @@ const firebaseConfig = {
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     LocalStorage,
-    AngularFireDatabase
+    AngularFireDatabase,
+    HttpClient
   ]
 })
 export class AppModule {}
