@@ -149,6 +149,39 @@ export class LocalStorage {
     return JSON.parse(localStorage.getItem('userWishes'));
   }
 
+  addNotification(notification) {
+    let notifications = this.getNotifications();
+    if (notifications === null) {
+      notifications = [];
+    }
+    notifications.push(notification)
+    localStorage.setItem('notifications', JSON.stringify(notifications));
+    return this.getNotifications();
+  }
+
+  getNotifications() {
+    return JSON.parse(localStorage.getItem('notifications'));
+  }
+
+  removeNotifications(notification) {
+    let notifications = JSON.parse(localStorage.getItem('notifications'));
+    let i = 0;
+
+    if (notifications === null) {
+      notifications = [];
+    }
+
+    for (i = 0; i < notifications.length; i++) {
+      if (notifications[i] === notification) {
+        notifications.splice(i, 1);
+        break;
+      }
+    }
+
+    localStorage.setItem('notifications', JSON.stringify(notifications));
+    return JSON.parse(localStorage.getItem('notifications'));
+  }
+
   removeUserWish(userWish) {
     let userWishes = JSON.parse(localStorage.getItem('userWishes'));
     let i = 0;
@@ -182,6 +215,13 @@ export class LocalStorage {
     localStorage.setItem('slack', undefined);
   }
 
+  addOrUpdateFirebaseToken(token){
+    localStorage.setItem("firebaseToken", token);
+  }
+
+  getFirebaseToken() {
+    return JSON.parse(localStorage.getItem('firebaseToken'));
+  }
 }
 
 

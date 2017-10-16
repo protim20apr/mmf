@@ -98,6 +98,19 @@ export class HttpClient {
         return this.http.post(slck.slackUrl, JSON.stringify(slackJson));
     }
 
+    postLike(item, enteredAddress) {
+        const wishJson = {
+            "name": "I like ...",
+            "description": item.product_name,
+            "phone": (enteredAddress && enteredAddress.mobile) ? enteredAddress.mobile : "Fella"
+        };
+
+        let slackText = this.composeWishText(wishJson, "Missed");
+        let slck = this.slackDetail;
+        let slackJson = this.composeSlackJson(slackText, slck.feedbackChannel, slck.asUser, "Missed Fella");
+        return this.http.post(slck.slackUrl, JSON.stringify(slackJson));
+    }
+
     composeWishText(wish, name) {
         let start = "***************New Feedback*********************\n";
         let end = "************************************************";

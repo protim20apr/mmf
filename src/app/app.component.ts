@@ -4,7 +4,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
 
-import { HomePage } from '../pages/home/home';
 import { Main } from '../pages/main/main';
 import { AngularFireAuth } from 'angularfire2/auth';
 
@@ -21,17 +20,6 @@ export class MyApp {
               private afAuth: AngularFireAuth
     ) {
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      /*this.storage.get('token').then((token) => {
-        console.log(token);
-        if(token === null){
-          this.rootPage = HomePage;
-        }else{
-          this.rootPage = Main;
-        }
-      });*/
-
       //Angular Authentication
       const authObserver = afAuth.authState.subscribe( user => {
         if(user) {

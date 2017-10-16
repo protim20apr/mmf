@@ -4,7 +4,7 @@ import { Dashboard } from '../dashboard/dashboard';
 import { Wishlist } from '../wishlist/wishlist';
 import { Cart } from '../cart/cart';
 import { Orders } from '../orders/orders';
-import { Logout } from '../logout/logout';
+import { Products } from '../products/products';
 
 @IonicPage()
 @Component({
@@ -26,11 +26,12 @@ export class Main {
     this.user = JSON.parse(window.localStorage.getItem('user'));
 
     this.pages = [
+      { title: '', component: Dashboard },
       { title: 'Home', component: Dashboard },
-      { title: 'My Wishlist', component: Wishlist },
+      { title: 'Write to Us', component: Wishlist },
       { title: 'Cart', component: Cart },
-      { title: 'My Orders', component: Orders }//,
-      // { title: 'Logout', component: Logout }
+      { title: 'My Orders', component: Orders },
+      { title: 'Store', component: Products }
     ];
 }
   openPage(page) {

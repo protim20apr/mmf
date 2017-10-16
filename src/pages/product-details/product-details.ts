@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LocalStorage } from '../../providers/local-storage';
 import { OrdersReview } from '../orders-review/orders-review';
 import { Cart } from '../cart/cart';
+import { HttpClient } from '../../providers/http-client';
 
 @IonicPage()
 @Component({
@@ -13,12 +14,14 @@ export class ProductDetails {
 
   product: any;
   cartLength = 0;
-
+  customerDetail: any;
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
-              public _localStorage: LocalStorage            
+              public _localStorage: LocalStorage,
+              public httpClient: HttpClient        
   ) {
     this.product = this.navParams.get('product');
+    this.customerDetail = this._localStorage.getCustomerDetail();
     this.cartLength = this._localStorage.getCartLength();
   }
 
@@ -27,13 +30,20 @@ export class ProductDetails {
   }
 
   addToWishlist(product){
-    console.log(product);
-    console.log('Adding it to wishlist');
+    this.httpClient.postLike(product, this.customerDetail).subscribe(
+      data => {
+          console.log(data);
+      },
+      error =>{
+        console.log(error);
+      }
+    );
     this._localStorage.storeProductToWishList(product);
   }
 
   addToCart(product){
     this._localStorage.addProductToCart(product);
+    this.cartLength = this._localStorage.getCartLength();
   }
 
   buyNow(product){

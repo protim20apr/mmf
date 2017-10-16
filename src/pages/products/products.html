@@ -1,6 +1,9 @@
 <ion-header>
   <ion-navbar color="dark">
-    <ion-title>Products</ion-title>
+    <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+    <ion-title>{{productTitle}}</ion-title>
     <ion-buttons end>
       <button ion-button icon-right (tap)="cart()">
       <ion-icon name="cart"></ion-icon>&nbsp;
@@ -12,6 +15,7 @@
 
 
 <ion-content>
+  <p *ngIf="isCommingLoading">{{commingSoon}}</p>
   <ion-card *ngFor="let product of productList">
     <ion-card-content>
       <ion-row (tap)="productDetails(product)">

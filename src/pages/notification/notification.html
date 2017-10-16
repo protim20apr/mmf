@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar color="dark">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Notifications</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-card *ngIf="notificationArray !== null">
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let notificationMsg of notificationArray">
+          <ion-row>
+            <ion-col col-2>
+              <ion-avatar item-left>
+                <img src="{{logoUrl}}">
+              </ion-avatar>
+            </ion-col>
+
+            <ion-col class="item-text-wrap">
+              {{notificationMsg}}
+            </ion-col>
+
+            <ion-col col-2 text-right (tap)="removeNotification(notificationMsg)">
+              <ion-icon name="close"></ion-icon>
+            </ion-col>
+
+          </ion-row>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

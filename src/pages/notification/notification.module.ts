@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { Logout } from './logout';
+import { Notification } from './notification';
 
 @NgModule({
   declarations: [
-    Logout,
+    Notification,
   ],
   imports: [
-    IonicPageModule.forChild(Logout),
+    IonicPageModule.forChild(Notification),
   ],
   exports: [
-    Logout
+    Notification
   ]
 })
-export class LogoutModule {}
+export class NotificationModule {}
